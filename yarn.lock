@@ -4010,9 +4010,9 @@ rimraf@^2.2.8, rimraf@^2.6.1, rimraf@~2.6.2:
   dependencies:
     glob "^7.0.5"
 
-ringcentral-chatbot@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/ringcentral-chatbot/-/ringcentral-chatbot-0.1.2.tgz#5f6d3e86e54d29f6ba9203d1f33620b17f3e5a95"
+ringcentral-chatbot@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/ringcentral-chatbot/-/ringcentral-chatbot-0.1.4.tgz#c7aab056ff641ca40715039b20f4ad418cc8ae23"
   dependencies:
     aws-sdk "^2.355.0"
     cron-parser "^2.7.1"

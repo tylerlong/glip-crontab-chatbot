@@ -7,7 +7,7 @@
     "deploy": "sls deploy"
   },
   "dependencies": {
-    "ringcentral-chatbot": "^0.1.2"
+    "ringcentral-chatbot": "^0.1.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
