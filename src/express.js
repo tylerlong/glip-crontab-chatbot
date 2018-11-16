@@ -4,4 +4,4 @@ import handler from './handler'
 
 app.listen(process.env.RINGCENTRAL_CHATBOT_EXPRESS_PORT)
 
-app.bot.on('Message4Bot', message => handler(message))
+app.bot.on('Message4Bot', event => handler(event))

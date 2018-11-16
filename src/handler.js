@@ -1,11 +1,11 @@
 import cronParser from 'cron-parser'
 import Service from 'ringcentral-chatbot/dist/models/Service'
 
-const handler = async message => {
-  const { text, group, bot } = message
+const handler = async event => {
+  const { text, group, bot } = event
   const reply = async messages => {
     if (!Array.isArray(messages)) {
-      await bot.sendMessage(group.id, messages)
+      messages = [messages]
     }
     for (const message of messages) {
       await bot.sendMessage(group.id, message)
@@ -19,16 +19,33 @@ const handler = async message => {
     case 'new':
     case 'add':
     case 'create':
-      return reply(create(args, message))
+      return reply(await create(args, event))
+    case 'list':
+    case 'ls':
+      return reply(await list(args, group))
     case 'remove':
     case 'rm':
     case 'delete':
-      return reply(remove(args, group))
+      return reply(await remove(args, group))
     default:
-      await reply({ text: 'Sorry, I don\'t understand, please check the manual:' })
-      await reply(help(undefined))
-      break
+      await reply([
+        { text: 'Sorry, I don\'t understand, please check the manual:' },
+        help(undefined)
+      ])
   }
+}
+
+const list = async (args, group) => {
+  let services = await Service.findAll({
+    where: {
+      name: 'Crontab',
+      groupId: group.id
+    }
+  })
+  if (services.length === 0) {
+    return { text: 'No cron job found for this chat group' }
+  }
+  return { text: services.map(s => `ID: **${s.id}** [code]${s.data.expression} ${s.data.message}[/code]`).join('\n') }
 }
 
 const remove = async (args, group) => {
@@ -45,7 +62,7 @@ const remove = async (args, group) => {
   }
 }
 
-const create = async (args, message) => {
+const create = async (args, event) => {
   const tokens = args.split(/\s+/)
   if (tokens.length < 6) {
     return { text: 'Cron job syntax is invalid. Please check https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c' }
@@ -56,14 +73,14 @@ const create = async (args, message) => {
   } catch (e) {
     return { text: 'Cron job syntax is invalid. Please check https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c' }
   }
-  const { bot, group, userId } = message
-  const text = tokens.slice(5).join(' ')
+  const { bot, group, userId } = event
+  const message = tokens.slice(5).join(' ')
   await Service.create({
     name: 'Crontab',
     botId: bot.id,
     groupId: group.id,
     userId,
-    data: { expression, message: text }
+    data: { expression, message }
   })
   return { text: `cron job added: [code]${expression} ${message}[/code]` }
 }
