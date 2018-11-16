@@ -1,0 +1,29 @@
+{
+  "license": "MIT",
+  "scripts": {
+    "dev": "node -r @babel/register -r dotenv/config src/express.js",
+    "ngrok": "ngrok http -region eu 3000",
+    "build": "babel src --watch --out-dir dist --source-maps",
+    "deploy": "sls deploy"
+  },
+  "dependencies": {
+    "ringcentral-chatbot": "^0.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/register": "^7.0.0",
+    "dotenv": "^6.1.0",
+    "ngrok": "^3.1.0",
+    "serverless": "^1.33.1",
+    "sqlite3": "^4.0.4",
+    "standard": "^12.0.1",
+    "yarn-upgrade-all": "^0.5.0"
+  },
+  "standard": {
+    "ignore": [
+      "/dist/"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.serverless/
+
+.DS_Store
+*.sqlite
+.secret
+.env
+.env.*
