@@ -31,7 +31,7 @@ export const handle = async event => {
     case 'delete':
       return reply(await remove(args, group))
     default:
-      await reply([
+      return reply([
         { text: 'Sorry, I don\'t understand, please check the manual:' },
         help(undefined)
       ])
