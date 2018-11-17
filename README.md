@@ -23,6 +23,12 @@ yarn deploy
 HTTP PUT https://<bot-server>/admin/setup-database
 ```
 
+### Check remote logs
+
+```
+sls logs -f app/proxy/crontab
+```
+
 
 ## Change bot URI
 

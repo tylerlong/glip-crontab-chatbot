@@ -55,13 +55,13 @@ const remove = async (args, group) => {
   const id = args.split(/\s+/)[0]
   const service = await Service.findByPk(id)
   if (service === null) {
-    return { text: `cannot find cron job with ID ${id}` }
+    return { text: `cannot find cron job #${id}` }
   }
   if (service.groupId === group.id) {
     await service.destroy()
     return { text: `cron job #${id} deleted` }
   } else {
-    return { text: 'You don\'t have perission to delete this cron job' }
+    return { text: `You don't have perission to delete job #${id}` }
   }
 }
 
