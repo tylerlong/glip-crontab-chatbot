@@ -22,3 +22,14 @@ yarn build
 yarn deploy
 HTTP PUT https://<bot-server>/admin/setup-database
 ```
+
+
+## Change bot URI
+
+If for reason bot URI changed, you need to "reboot":
+
+```
+HTTP PUT https://<bot-server>/admin/reboot
+```
+
+Another use case for "reboot" is when you think there is dirty data in database.

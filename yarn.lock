@@ -4921,9 +4921,9 @@ rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@~2.6.2:
   dependencies:
     glob "^7.0.5"
 
-ringcentral-chatbot@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/ringcentral-chatbot/-/ringcentral-chatbot-0.1.6.tgz#b9af85f7af80703330d5272767dfea9711fc2008"
+ringcentral-chatbot@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/ringcentral-chatbot/-/ringcentral-chatbot-0.1.7.tgz#d212760304b8866df022c1be10f7dbb17a0f171e"
   dependencies:
     aws-sdk "^2.357.0"
     express "^4.16.4"
