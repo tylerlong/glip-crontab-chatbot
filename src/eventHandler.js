@@ -59,7 +59,7 @@ const remove = async (args, group) => {
   }
   if (service.groupId === group.id) {
     await service.destroy()
-    return { text: 'cron job deleted' }
+    return { text: `cron job #${id} deleted` }
   } else {
     return { text: 'You don\'t have perission to delete this cron job' }
   }

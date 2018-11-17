@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "node -r @babel/register -r dotenv/config src/express.js",
     "ngrok": "ngrok http -region eu 3000",
-    "build": "babel src --watch --out-dir dist --source-maps",
+    "build": "rm -rf dist && babel src --watch --out-dir dist --source-maps",
     "deploy": "sls deploy",
     "test": "jest"
   },
