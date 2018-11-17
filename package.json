@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "cron-parser": "^2.7.1",
-    "ringcentral-chatbot": "^0.1.7"
+    "ringcentral-chatbot": "^0.1.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",

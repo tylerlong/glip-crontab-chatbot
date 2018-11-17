@@ -1,10 +1,10 @@
 import app from 'ringcentral-chatbot/dist/apps/index'
 
-import handler from './handler'
+import { handle } from './eventHandler'
 import crontab from './crontab'
 
 app.listen(process.env.RINGCENTRAL_CHATBOT_EXPRESS_PORT)
 
-app.bot.on('Message4Bot', event => handler(event))
+app.$.subscribe(event => handle(event))
 
 setInterval(() => crontab(), 60000)

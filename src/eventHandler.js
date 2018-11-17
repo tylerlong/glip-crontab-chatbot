@@ -1,7 +1,10 @@
 import cronParser from 'cron-parser'
 import Service from 'ringcentral-chatbot/dist/models/Service'
 
-const handler = async event => {
+export const handle = async event => {
+  if (event.type !== 'Message4Bot') {
+    return // we don't care about other events
+  }
   const { text, group, bot } = event
   const reply = async messages => {
     if (!Array.isArray(messages)) {
@@ -120,5 +123,3 @@ For cron job syntax, please check https://cdn.filestackcontent.com/gE30XyppQqyNC
       return [{ text: `unkown command "${command}", list of known commands:` }, help(undefined)]
   }
 }
-
-export default handler
