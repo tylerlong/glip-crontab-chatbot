@@ -20,13 +20,13 @@ package:
   excludeDevDependencies: true
 functions:
   app:
-    handler: dist/index.handler
+    handler: dist/lambda.app
     timeout: 300 # 5 miutes
   proxy:
-    handler: dist/index.proxy
+    handler: dist/lambda.proxy
     events:
       - http: 'ANY {proxy+}'
   crontab:
-    handler: dist/index.crontab
+    handler: dist/lambda.crontab
     events:
       - schedule: cron(* * * * ? *)
