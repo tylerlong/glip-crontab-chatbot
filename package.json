@@ -3,13 +3,13 @@
   "scripts": {
     "dev": "node -r @babel/register -r dotenv/config src/express.js",
     "ngrok": "ngrok http -region eu 3000",
-    "build": "rm -rf dist && babel src --watch --out-dir dist --source-maps",
-    "deploy": "sls deploy",
+    "build": "rm -rf dist && babel src --out-dir dist --source-maps",
+    "deploy": "yarn test && yarn build && sls deploy",
     "test": "jest"
   },
   "dependencies": {
     "cron-parser": "^2.7.1",
-    "ringcentral-chatbot": "^0.1.8"
+    "ringcentral-chatbot": "^0.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
