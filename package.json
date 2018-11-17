@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "cron-parser": "^2.7.1",
+    "pg": "^7.6.1",
     "ringcentral-chatbot": "^0.2.2"
   },
   "devDependencies": {
