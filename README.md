@@ -45,3 +45,4 @@ HTTP PUT https://<bot-server>/admin/reboot
 ## Todo
 
 - Mention some one in cron message
+- We can get each user's timezone settings via `rc.get('/restapi/v1.0/account/~/extension/~')`
