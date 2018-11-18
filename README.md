@@ -32,7 +32,10 @@ sls logs -f app/proxy/crontab
 
 ## "Reboot"
 
+"Reboot" is useful in the following cases:
+
 - If for reason bot server changed, you need to re-setup WebHooks
+- You bot server was down for quite a while and your WebHooks have been blacklisted
 - If there is orphan data in database
 
 You can "reboot" to resolve the issues above:
@@ -44,5 +47,4 @@ HTTP PUT https://<bot-server>/admin/reboot
 
 ## Todo
 
-- Mention some one in cron message
 - We can get each user's timezone settings via `rc.get('/restapi/v1.0/account/~/extension/~')`
