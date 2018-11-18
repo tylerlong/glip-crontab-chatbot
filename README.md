@@ -30,12 +30,18 @@ sls logs -f app/proxy/crontab
 ```
 
 
-## Change bot URI
+## "Reboot"
 
-If for reason bot URI changed, you need to "reboot":
+- If for reason bot server changed, you need to re-setup WebHooks
+- If there is orphan data in database
+
+You can "reboot" to resolve the issues above:
 
 ```
 HTTP PUT https://<bot-server>/admin/reboot
 ```
 
-Another use case for "reboot" is when you think there is dirty data in database.
+
+## Todo
+
+- Mention some one in cron message
