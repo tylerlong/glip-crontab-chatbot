@@ -98,10 +98,10 @@ const create = async (args, event) => {
 const help = args => {
   if (!args) {
     return { text: `
-- **-h / help [command]**: show help message [about command]
-- **-n / new / add / create <cron> <message>**: add a cron job
-- **-l / list / ls**: list all cron jobs
-- **-r /remove / rm / delete <ID>**: delete a cron job by ID
+* **-h / help [command]**: show help message [about command]
+* **-n / new / add / create <cron> <message>**: add a cron job
+* **-l / list / ls**: list all cron jobs
+* **-r /remove / rm / delete <ID>**: delete a cron job by ID
 
 For cron job syntax, please check https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c
 `.trim()
