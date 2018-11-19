@@ -71,7 +71,7 @@ const list = async (args, group) => {
   if (services.length === 0) {
     return { text: 'There is no cron job in this chat group' }
   }
-  return { text: services.map(s => `**#${s.id}** [code]${s.data.expression} ${s.data.message}[/code] ${s.data.options.utc ? 'UTC' : s.data.options.tz}`).join('\n\n') }
+  return { text: services.map(s => `**#${s.id}** [code]${s.data.expression} ${s.data.message}[/code]Timezone: ${s.data.options.utc ? 'UTC' : s.data.options.tz}`).join('\n\n') }
 }
 
 const remove = async (args, group) => {
@@ -122,7 +122,7 @@ const create = async (args, event) => {
       options
     }
   })
-  return { text: `Cron job created: \n **#${service.id}** [code]${expression} ${message}[/code] ${options.utc ? 'UTC' : options.tz}` }
+  return { text: `Cron job created: \n **#${service.id}** [code]${expression} ${message}[/code]Timezone: ${options.utc ? 'UTC' : options.tz}` }
 }
 
 const help = args => {
