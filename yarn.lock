@@ -4982,9 +4982,9 @@ rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@~2.6.2:
   dependencies:
     glob "^7.0.5"
 
-ringcentral-chatbot@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/ringcentral-chatbot/-/ringcentral-chatbot-0.3.1.tgz#83801ed0eb1aa511462627d23ce0ab1bd1076760"
+ringcentral-chatbot@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/ringcentral-chatbot/-/ringcentral-chatbot-0.3.4.tgz#f1ef89df298a14592958a56c7cf5f848557ca3f0"
   dependencies:
     aws-sdk "^2.358.0"
     axios "^0.18.0"

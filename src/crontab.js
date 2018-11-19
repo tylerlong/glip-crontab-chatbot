@@ -1,5 +1,4 @@
-import Service from 'ringcentral-chatbot/dist/models/Service'
-import Bot from 'ringcentral-chatbot/dist/models/Bot'
+import { Service, Bot } from 'ringcentral-chatbot/dist/models'
 import cronParser from 'cron-parser'
 import moment from 'moment-timezone'
 

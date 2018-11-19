@@ -1,10 +1,24 @@
 import cronParser from 'cron-parser'
-import Service from 'ringcentral-chatbot/dist/models/Service'
+import { Service, Bot } from 'ringcentral-chatbot/dist/models'
 
 export const handle = async event => {
-  if (event.type !== 'Message4Bot') {
-    return // we don't care about other events
+  switch (event.type) {
+    case 'Message4Bot':
+      await handleMessage4Bot(event)
+      break
+    case 'GroupJoined': // bot user joined a new group
+      const botId = event.message.ownerId
+      const bot = await Bot.findByPk(botId)
+      const groupId = event.message.body.id
+      await bot.sendMessage(groupId, about())
+      await bot.sendMessage(groupId, help())
+      break
+    default:
+      break
   }
+}
+
+const handleMessage4Bot = async event => {
   const { text, group, bot } = event
   const reply = async messages => {
     if (!Array.isArray(messages)) {
