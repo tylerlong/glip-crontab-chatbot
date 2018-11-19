@@ -17,6 +17,9 @@ export const handle = async event => {
   const command = text.split(/\s+/)[0]
   const args = text.split(/\s+(.+)/)[1]
   switch (command.toLowerCase()) {
+    case '-a':
+    case 'about':
+      return reply(about())
     case '-h':
     case 'help':
       return reply(help(args))
@@ -52,7 +55,7 @@ const list = async (args, group) => {
   if (services.length === 0) {
     return { text: 'There is no cron job in this chat group' }
   }
-  return { text: services.map(s => `**#${s.id}** [code]${s.data.expression} ${s.data.message}[/code] ${s.data.options.utc ? 'UTC' : s.data.options.tz}`).join('\n') }
+  return { text: services.map(s => `**#${s.id}** [code]${s.data.expression} ${s.data.message}[/code] ${s.data.options.utc ? 'UTC' : s.data.options.tz}`).join('\n\n') }
 }
 
 const remove = async (args, group) => {
@@ -75,13 +78,13 @@ const remove = async (args, group) => {
 const create = async (args, event) => {
   const tokens = args.split(/\s+/)
   if (tokens.length < 6) {
-    return { text: 'Cron job syntax is invalid. Please check https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c' }
+    return { text: 'Cron job syntax is invalid. Please check [this](https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c).' }
   }
   const expression = tokens.slice(0, 5).join(' ')
   try {
     cronParser.parseExpression(expression)
   } catch (e) {
-    return { text: 'Cron job syntax is invalid. Please check https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c' }
+    return { text: 'Cron job syntax is invalid. Please check [this](https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c).' }
   }
   const { bot, group, userId } = event
   const message = tokens.slice(5).join(' ')
@@ -109,17 +112,21 @@ const create = async (args, event) => {
 const help = args => {
   if (!args) {
     return { text: `
+* **-a / about**: about this chatbot
 * **-h / help [command]**: show help message [about command]
 * **-n / new / add / create <cron> <message>**: add a cron job
 * **-l / list / ls**: list all cron jobs
 * **-r /remove / rm / delete <ID>**: delete a cron job by ID
 
-For cron job syntax, please check https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c
+For cron job syntax, please check [this](https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c).
 `.trim()
     }
   }
   const command = args.split(/\s+/)[0]
   switch (command) {
+    case '-a':
+    case 'about':
+      return { text: '**-a / about**: about this chatbot' }
     case '-h':
     case 'help':
       return { text: `**-h / help [command]**: show help message [about command]` }
@@ -132,7 +139,7 @@ For cron job syntax, please check https://cdn.filestackcontent.com/gE30XyppQqyNC
       [code]new */2 * * * * hello world[/code]
 Example above created a cron job sending "hello world" to Glip every 2 minutes.
 
-For cron job syntax, please check https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c
+For cron job syntax, please check [this](https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c).
 ` }
     case '-l':
     case 'list':
@@ -146,4 +153,8 @@ For cron job syntax, please check https://cdn.filestackcontent.com/gE30XyppQqyNC
     default:
       return [{ text: `Unkown command "${command}", list of known commands:` }, help(undefined)]
   }
+}
+
+const about = () => {
+  return { text: 'I am a Glip Crontab Chatbot, I am created by ![:Person](850957020). Here is [my source code](https://github.com/tylerlong/glip-crontab-chatbot).' }
 }

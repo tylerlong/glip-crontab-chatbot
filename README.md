@@ -46,4 +46,6 @@ HTTP PUT https://<bot-server>/admin/reboot
 
 
 ## Todo
-- Add about command
+
+- Allow cron job to execute code from external scripts
+    - could be dangerous
