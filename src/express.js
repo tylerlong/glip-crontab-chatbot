@@ -7,7 +7,6 @@ import crontab from './crontab'
 const app = createApp(handle)
 app.listen(process.env.RINGCENTRAL_CHATBOT_EXPRESS_PORT)
 
-axios.put(`${process.env.RINGCENTRAL_CHATBOT_SERVER}/admin/maintain`)
 setInterval(() => axios.put(`${process.env.RINGCENTRAL_CHATBOT_SERVER}/admin/maintain`), 86400000)
 
 setInterval(() => crontab(), 60000)
