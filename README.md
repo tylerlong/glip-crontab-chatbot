@@ -18,7 +18,6 @@ HTTP PUT https://<bot-server>/admin/setup-database
 ```
 cp .sample.env.yml .env.yml
 edit .env.yml
-yarn build
 yarn deploy
 HTTP PUT https://<bot-server>/admin/setup-database
 ```
@@ -26,24 +25,8 @@ HTTP PUT https://<bot-server>/admin/setup-database
 ### Check remote logs
 
 ```
-sls logs -f app/proxy/crontab
+sls logs -f app/proxy/crontab/maintain
 ```
-
-
-## Maintain
-
-"Maintain" is useful in the following cases:
-
-- If for reason bot server changed, you need to re-setup WebHooks
-- You bot server was down for quite a while and your WebHooks have been blacklisted
-- There is orphan data in database
-
-You can "maintain" to resolve the issues above:
-
-```
-HTTP PUT https://<bot-server>/admin/maintain
-```
-
 
 ## Todo
 
