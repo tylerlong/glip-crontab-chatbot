@@ -8,10 +8,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "cron-parser": "^2.7.1",
+    "cron-parser": "^2.7.3",
     "moment-timezone": "^0.5.23",
     "pg": "^7.6.1",
-    "ringcentral-chatbot": "^0.2.9",
+    "ringcentral-chatbot": "^0.3.0",
     "serverless-http": "^1.8.0"
   },
   "devDependencies": {
