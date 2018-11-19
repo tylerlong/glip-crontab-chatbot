@@ -26,7 +26,11 @@ functions:
     handler: dist/lambda.proxy
     events:
       - http: 'ANY {proxy+}'
+  maintain:
+    handler: dist/lambda.maintain
+    events:
+      - schedule: rate(1 day)
   crontab:
     handler: dist/lambda.crontab
     events:
-      - schedule: cron(* * * * ? *)
+      - schedule: rate(1 minute)
