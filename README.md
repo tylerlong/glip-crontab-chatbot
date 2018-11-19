@@ -46,5 +46,4 @@ HTTP PUT https://<bot-server>/admin/reboot
 
 
 ## Todo
-
-- We can get each user's timezone settings via `rc.get('/restapi/v1.0/account/~/extension/~')`
+- Add about command

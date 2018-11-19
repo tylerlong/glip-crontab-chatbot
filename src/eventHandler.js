@@ -79,18 +79,29 @@ const create = async (args, event) => {
   }
   const expression = tokens.slice(0, 5).join(' ')
   try {
-    cronParser.parseExpression(expression, { utc: true })
+    cronParser.parseExpression(expression)
   } catch (e) {
     return { text: 'Cron job syntax is invalid. Please check https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c' }
   }
   const { bot, group, userId } = event
   const message = tokens.slice(5).join(' ')
+  const user = await bot.getUser(userId)
+  let options
+  if (user.rc && user.rc.regionalSettings && user.rc.regionalSettings.timezone && user.rc.regionalSettings.timezone.name) {
+    options = { tz: user.rc.regionalSettings.timezone.name }
+  } else {
+    options = { utc: true }
+  }
   const service = await Service.create({
     name: 'Crontab',
     botId: bot.id,
     groupId: group.id,
     userId,
-    data: { expression, message }
+    data: {
+      expression,
+      message,
+      options
+    }
   })
   return { text: `Cron job created: \n **#${service.id}** [code]${expression} ${message}[/code]` }
 }

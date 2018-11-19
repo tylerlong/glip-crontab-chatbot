@@ -5,9 +5,9 @@ import moment from 'moment-timezone'
 
 const crontab = async () => {
   const services = await Service.findAll({ where: { name: 'Crontab' } })
-  const currentTimestamp = moment.tz(new Date(), 'utc').seconds(0).milliseconds(0)
   for (const service of services) {
-    const interval = cronParser.parseExpression(service.data.expression, { utc: true })
+    const currentTimestamp = moment.tz(new Date(), service.data.options.utc ? 'utc' : service.data.options.tz).seconds(0).milliseconds(0)
+    const interval = cronParser.parseExpression(service.data.expression, service.data.options)
     const prevTimestamp = interval.prev()._date
     if (currentTimestamp - prevTimestamp === 0) {
       const bot = await Bot.findByPk(service.botId)
