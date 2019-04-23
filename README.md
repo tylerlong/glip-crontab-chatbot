@@ -9,7 +9,7 @@ cp .sample.env .env
 edit .env
 yarn ngork
 yarn dev
-HTTP PUT https://<bot-server>/admin/setup-database
+HTTP PUT -u admin:password https://<bot-server>/admin/setup-database
 ```
 
 
@@ -19,7 +19,7 @@ HTTP PUT https://<bot-server>/admin/setup-database
 cp .sample.env.yml .env.yml
 edit .env.yml
 yarn deploy
-HTTP PUT https://<bot-server>/admin/setup-database
+HTTP PUT -u admin:password https://<bot-server>/admin/setup-database
 ```
 
 ### Check remote logs
