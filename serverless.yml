@@ -1,5 +1,5 @@
 service:
-  name: glip-crontab-chatbot
+  name: glip-crontab-chatbot2
 
 provider:
   stage: prod
