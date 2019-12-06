@@ -26,7 +26,8 @@ provider:
     Team: dre
     Owner: Tyler Liu
     Environment: temp
-    Name: dre-glip-crontab-chatbot
+    Name: dre-glip-crontab-chatbot2
+  stackTags: ${self:provider.tags}
 
 package:
   exclude:

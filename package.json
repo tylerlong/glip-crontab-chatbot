@@ -26,8 +26,8 @@
     "dotenv": "^8.2.0",
     "jest": "^24.9.0",
     "ngrok": "^3.2.5",
-    "serverless": "^1.58.0",
-    "sqlite3": "^4.1.0",
+    "serverless": "^1.59.1",
+    "sqlite3": "^4.1.1",
     "standard": "^14.3.1",
     "yarn-upgrade-all": "^0.5.2"
   },
