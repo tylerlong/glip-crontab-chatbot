@@ -7,7 +7,7 @@ export const handle = async event => {
     case 'Message4Bot':
       await handleMessage4Bot(event)
       break
-    case 'GroupJoined': // bot user joined a new group
+    case 'GroupJoined': { // bot user joined a new group
       const botId = event.message.ownerId
       const bot = await Bot.findByPk(botId)
       const groupId = event.message.body.id
@@ -15,6 +15,7 @@ export const handle = async event => {
       await delay(1000)
       await bot.sendMessage(groupId, help())
       break
+    }
     default:
       break
   }
@@ -62,7 +63,7 @@ const handleMessage4Bot = async event => {
 }
 
 const list = async (args, group) => {
-  let services = await Service.findAll({
+  const services = await Service.findAll({
     where: {
       name: 'Crontab',
       groupId: group.id
@@ -127,7 +128,8 @@ const create = async (args, event) => {
 
 const help = args => {
   if (!args) {
-    return { text: `
+    return {
+      text: `
 * **-a / about**: about this chatbot
 * **-h / help [command]**: show help message [about command]
 * **-n / new / add / create <cron> <message>**: add a cron job
@@ -145,18 +147,20 @@ For cron job syntax, please check [this](https://cdn.filestackcontent.com/gE30Xy
       return { text: '**-a / about**: about this chatbot' }
     case '-h':
     case 'help':
-      return { text: `**-h / help [command]**: show help message [about command]` }
+      return { text: '**-h / help [command]**: show help message [about command]' }
     case '-n':
     case 'new':
     case 'add':
     case 'create':
-      return { text: `**-n / new / add / create <cron> <message>**: add a cron job. Example:
+      return {
+        text: `**-n / new / add / create <cron> <message>**: add a cron job. Example:
 
       [code]new */2 * * * * hello world[/code]
 Example above created a cron job sending "hello world" to Glip every 2 minutes.
 
 For cron job syntax, please check [this](https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c).
-` }
+`
+      }
     case '-l':
     case 'list':
     case 'ls':
