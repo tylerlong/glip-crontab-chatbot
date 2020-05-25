@@ -104,7 +104,12 @@ const create = async (args, event) => {
     return { text: 'Cron job syntax is invalid. Please check [this](https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c).' }
   }
   const { bot, group, userId } = event
-  const message = tokens.slice(5).join(' ')
+  let groupId = group.id
+  let message = tokens.slice(5).join(' ')
+  if (message.startsWith('![:Team](')) { // create cron job for another team
+    message = tokens.slice(6).join(' ')
+    groupId = tokens[5].match(/!\[:Team\]\((\d+)\)/)[1]
+  }
   const user = await bot.getUser(userId)
   let options
   if (user.rc && user.rc.regionalSettings && user.rc.regionalSettings.timezone && user.rc.regionalSettings.timezone.name) {
@@ -115,7 +120,7 @@ const create = async (args, event) => {
   const service = await Service.create({
     name: 'Crontab',
     botId: bot.id,
-    groupId: group.id,
+    groupId,
     userId,
     data: {
       expression,
