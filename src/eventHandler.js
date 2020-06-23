@@ -53,7 +53,7 @@ const handleMessage4Bot = async event => {
     case 'remove':
     case 'rm':
     case 'delete':
-      return reply(await remove(args, group))
+      return reply(await remove(args, event))
     default:
       return reply([
         { text: 'Sorry, I don\'t understand, please check the manual:' },
@@ -69,13 +69,14 @@ const list = async (args, group) => {
       groupId: group.id
     }
   })
+  // todo: list all cron jobs for current user
   if (services.length === 0) {
     return { text: 'There is no cron job in this chat group' }
   }
   return { text: services.map(s => `**#${s.id}** [code]${s.data.expression} ${s.data.message}[/code]Timezone: ${s.data.options.utc ? 'UTC' : s.data.options.tz}`).join('\n\n') }
 }
 
-const remove = async (args, group) => {
+const remove = async (args, event) => {
   let id = args.split(/\s+/)[0]
   if (id.startsWith('#')) {
     id = id.substring(1)
@@ -84,11 +85,11 @@ const remove = async (args, group) => {
   if (service === null) {
     return { text: `Cannot find cron job #${id}` }
   }
-  if (service.groupId === group.id) {
+  if (service.groupId === event.group.id || service.userId === event.userId) {
     await service.destroy()
     return { text: `Cron job #${id} deleted` }
   } else {
-    return { text: `You don't have perission to delete #${id}` }
+    return { text: `You don't have permission to delete #${id}` }
   }
 }
 
@@ -117,6 +118,7 @@ const create = async (args, event) => {
   } else {
     options = { utc: true }
   }
+  // todo: check cron user in team or not
   const service = await Service.create({
     name: 'Crontab',
     botId: bot.id,
@@ -158,10 +160,14 @@ For cron job syntax, please check [this](https://cdn.filestackcontent.com/gE30Xy
     case 'add':
     case 'create':
       return {
-        text: `**-n / new / add / create <cron> <message>**: add a cron job. Example:
+        text: `**-n / new / add / create <cron> [@team] <message>**: add a cron job. Example:
 
       [code]new */2 * * * * hello world[/code]
-Example above created a cron job sending "hello world" to Glip every 2 minutes.
+Example above created a cron job sending "hello world" to current team every 2 minutes.
+You can also create a cron job for another team:
+
+      [code]new */2 * * * * @AnotherTeam hello world[/code]
+Example above created a cron job sending "hello world" to AnotherTeam every 2 minutes.
 
 For cron job syntax, please check [this](https://cdn.filestackcontent.com/gE30XyppQqyNCnNB4a5c).
 `
