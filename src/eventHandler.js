@@ -139,7 +139,7 @@ const help = args => {
       text: `
 * **-a / about**: about this chatbot
 * **-h / help [command]**: show help message [about command]
-* **-n / new / add / create <cron> <message>**: add a cron job
+* **-n / new / add / create <cron> [@Team] <message>**: add a cron job
 * **-l / list / ls**: list all cron jobs
 * **-r /remove / rm / delete <ID>**: delete a cron job by ID
 
@@ -160,7 +160,7 @@ For cron job syntax, please check [this](https://cdn.filestackcontent.com/gE30Xy
     case 'add':
     case 'create':
       return {
-        text: `**-n / new / add / create <cron> [@team] <message>**: add a cron job. Example:
+        text: `**-n / new / add / create <cron> [@Team] <message>**: add a cron job. Example:
 
       [code]new */2 * * * * hello world[/code]
 Example above created a cron job sending "hello world" to current team every 2 minutes.
