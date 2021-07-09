@@ -1,6 +1,6 @@
 import cronParser from 'cron-parser'
 import { Service, Bot } from 'ringcentral-chatbot/dist/models'
-import delay from 'timeout-as-promise'
+import waitFor from 'wait-for-async'
 
 export const handle = async event => {
   switch (event.type) {
@@ -12,7 +12,7 @@ export const handle = async event => {
       const bot = await Bot.findByPk(botId)
       const groupId = event.message.body.id
       await bot.sendMessage(groupId, about())
-      await delay(1000)
+      await waitFor({interval: 1000})
       await bot.sendMessage(groupId, help())
       break
     }
