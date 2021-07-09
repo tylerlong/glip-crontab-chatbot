@@ -1,7 +1,8 @@
-service:
-  name: glip-crontab-chatbot2
+service: glip-crontab-chatbot2
+configValidationMode: error
 
 provider:
+  lambdaHashingVersion: 20201221
   stage: prod
   name: aws
   runtime: nodejs10.x
@@ -9,11 +10,13 @@ provider:
   memorySize: 256
   timeout: 30
   environment: ${file(./.env.yml)}
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - lambda:InvokeFunction
-      Resource: "*"
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - lambda:InvokeFunction
+          Resource: "*"
   vpc:
     securityGroupIds:
       - Ref: LambdaSecurityGroup
@@ -30,22 +33,22 @@ provider:
   stackTags: ${self:provider.tags}
 
 package:
-  exclude:
-    - ./**
-    - '!dist/**'
-    - '!node_modules/**'
+  patterns:
+    - '!./**'
+    - 'dist/**'
+    - 'node_modules/**'
   excludeDevDependencies: true
 
 functions:
   app:
     handler: dist/lambda.app
-    timeout: 300 # 5 miutes
+    timeout: 300 # 5 minutes
     events:
       - http: 'GET /admin/diagnostic'
   proxy:
     handler: dist/lambda.proxy
     events:
-      - http: 'ANY {proxy+}'
+      - http: 'ANY /{proxy+}'
   maintain:
     handler: dist/lambda.maintain
     events:
