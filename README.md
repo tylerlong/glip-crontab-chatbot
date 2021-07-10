@@ -46,3 +46,5 @@ yarn add --dev @types/istanbul-lib-report
 ```
 
 Delete `./node_modules/@types/istanbul-reports/node_modules/@types/istanbul-lib-report`, because it is an old version.
+
+The idea is: install latest version, manually find and delete old version.
