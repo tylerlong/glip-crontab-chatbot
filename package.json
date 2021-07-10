@@ -17,6 +17,7 @@
     "wait-for-async": "^0.5.0"
   },
   "devDependencies": {
+    "@types/istanbul-lib-report": "^3.0.0",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.3.1",
     "dotenv-override-true": "^6.2.2",
