@@ -44,7 +44,8 @@ functions:
     handler: dist/lambda.app
     timeout: 300 # 5 minutes
     events:
-      - http: 'GET /admin/diagnostic'
+      - http: 'GET /admin/dump-database'
+      - http: 'GET /admin/list-subscriptions'
   proxy:
     handler: dist/lambda.proxy
     events:
