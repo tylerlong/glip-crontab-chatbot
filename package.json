@@ -5,7 +5,8 @@
     "ngrok": "ngrok http -region eu 3000",
     "build": "rm -rf dist && tsc",
     "deploy": "yarn test && yarn build && sls deploy",
-    "test": "jest -c test/jest.config.ts"
+    "test": "jest -c test/jest.config.ts",
+    "update-token": "ts-node src/update-token.ts"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -17,6 +18,7 @@
     "wait-for-async": "^0.5.0"
   },
   "devDependencies": {
+    "@rc-ex/core": "^0.8.4",
     "@types/istanbul-lib-report": "^3.0.0",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.3.1",

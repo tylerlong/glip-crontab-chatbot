@@ -642,7 +642,7 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@rc-ex/core@^0.8.3":
+"@rc-ex/core@^0.8.3", "@rc-ex/core@^0.8.4":
   version "0.8.4"
   resolved "https://registry.yarnpkg.com/@rc-ex/core/-/core-0.8.4.tgz#036d64a1060e32e5848fbe5f2762e59b4b15c693"
   integrity sha512-IoD63P0wCfULIWIw92TDuMyxXCmmLuXPZ4mFfBIPpcTTITD8HH1gY+KYuIa35QfGdlh61tZg9+Z8M5C6nx6fVA==
