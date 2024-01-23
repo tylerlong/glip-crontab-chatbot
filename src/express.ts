@@ -8,7 +8,17 @@ const app = createApp(handle);
 app.listen(process.env.RINGCENTRAL_CHATBOT_EXPRESS_PORT);
 
 setInterval(
-  () => axios.put(`${process.env.RINGCENTRAL_CHATBOT_SERVER}/admin/maintain`),
+  () =>
+    axios.put(
+      `${process.env.RINGCENTRAL_CHATBOT_SERVER}/admin/maintain`,
+      {},
+      {
+        auth: {
+          username: process.env.RINGCENTRAL_CHATBOT_ADMIN_USERNAME!,
+          password: process.env.RINGCENTRAL_CHATBOT_ADMIN_PASSWORD!,
+        },
+      }
+    ),
   86400000
 );
 
