@@ -138,7 +138,7 @@ resources:
         Engine: postgres
         DBName: dbname
         AllocatedStorage: 20
-        EngineVersion: 11.2
+        EngineVersion: 15.2
         DBInstanceClass: db.t3.micro
         MasterUsername: ${self:provider.environment.RINGCENTRAL_CHATBOT_DATABASE_USERNAME}
         MasterUserPassword: ${self:provider.environment.RINGCENTRAL_CHATBOT_DATABASE_PASSWORD}
